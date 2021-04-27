@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/virgil_e3kit.iml" filepath="$PROJECT_DIR$/virgil_e3kit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/virgil_e3kit_android.iml" filepath="$PROJECT_DIR$/android/virgil_e3kit_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/virgil_e3kit_example_android.iml" filepath="$PROJECT_DIR$/example/android/virgil_e3kit_example_android.iml" />
+    </modules>
+  </component>
+</project>

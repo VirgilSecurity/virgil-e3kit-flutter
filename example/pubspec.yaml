@@ -1,0 +1,19 @@
+name: virgil_e3kit_example
+description: Demonstrates how to use the virgil_e3kit plugin.
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  virgil_e3kit:
+    path: ../
+  http: ^0.13.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
