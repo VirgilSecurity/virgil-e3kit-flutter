@@ -39,7 +39,7 @@ You can find the code samples for there:
 
 | Sample type | 
 |----------| 
-| [`Flutter Demo`](https://github.com/VirgilSecurity/virgil-e3kit-flutter/example/lib) | 
+| [`Flutter Demo`](https://github.com/VirgilSecurity/virgil-e3kit-flutter/tree/master/example/lib) | 
 
 You can run the demo to see how to initialize the SDK, register users and encrypt messages using E3Kit.
 
