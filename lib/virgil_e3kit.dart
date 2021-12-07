@@ -30,44 +30,44 @@ class Ethree {
     return ethree;
   }
 
-  Future<String?> getIdentity() async {
+  Future<String?> getIdentity() {
     return _channel.invokeMethod('getIdentity');
   }
 
-  Future<bool?> register() async {
+  Future<bool?> register() {
     return _channel.invokeMethod('register');
   }
 
-  Future<bool?> unregister() async {
+  Future<bool?> unregister() {
     return _channel.invokeMethod("unregister");
   }
 
-  Future<bool?> backupPrivateKey(String password) async {
+  Future<bool?> backupPrivateKey(String password) {
     return _channel.invokeMethod("backupPrivateKey", {"password": password});
   }
 
-  Future<bool?> changePassword(String oldPassword, String newPassword) async {
+  Future<bool?> changePassword(String oldPassword, String newPassword) {
     return _channel.invokeMethod("changePassword",
         {"oldPassword": oldPassword, "newPassword": newPassword});
   }
 
-  Future<bool?> resetPrivateKeyBackup() async {
+  Future<bool?> resetPrivateKeyBackup() {
     return _channel.invokeMethod("resetPrivateKeyBackup");
   }
 
-  Future<bool?> restorePrivateKey(String password) async {
+  Future<bool?> restorePrivateKey(String password) {
     return _channel.invokeMethod("restorePrivateKey", {'password': password});
   }
 
-  Future<bool?> rotatePrivateKey() async {
+  Future<bool?> rotatePrivateKey() {
     return _channel.invokeMethod("rotatePrivateKey");
   }
 
-  Future<bool?> hasLocalPrivateKey() async {
+  Future<bool?> hasLocalPrivateKey() {
     return _channel.invokeMethod("hasLocalPrivateKey");
   }
 
-  Future<bool?> cleanup() async {
+  Future<bool?> cleanup() {
     return _channel.invokeMethod("cleanup");
   }
 
@@ -99,15 +99,15 @@ class Ethree {
     return users;
   }
 
-  Future<bool?> updateCachedUsers() async {
+  Future<bool?> updateCachedUsers() {
     return _channel.invokeMethod("updateCachedUsers");
   }
 
-  Future<String?> authEncrypt(Map users, String data) async {
+  Future<String?> authEncrypt(Map users, String data) {
     return _channel.invokeMethod("authEncrypt", {"users": users, "data": data});
   }
 
-  Future<String?> authDecrypt(String data, [String card = ""]) async {
+  Future<String?> authDecrypt(String data, [String card = ""]) {
     return _channel.invokeMethod("authDecrypt", {"data": data, "card": card});
   }
 
