@@ -12,7 +12,7 @@ class Ethree {
   final String identity;
 
   Ethree(this.identity, this.tokenCallback, this._channel) {
-    this._channel.setMethodCallHandler(this.handleMethodCall);
+    this._channel.setMethodCallHandler(this._handleMethodCall);
   }
 
   static Future<Ethree?> init(
@@ -111,7 +111,7 @@ class Ethree {
     return _channel.invokeMethod("authDecrypt", {"data": data, "card": card});
   }
 
-  Future<dynamic> handleMethodCall(MethodCall call) {
+  Future<dynamic> _handleMethodCall(MethodCall call) {
     switch (call.method) {
       case 'tokenCallback':
         return this.tokenCallback();
