@@ -57,7 +57,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/virgil_e3kit/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   virgil_e3kit: 199ccec836a5a57ccf9bfaeddd3d85d2f81d9a41
   VirgilCrypto: c2831582c5230eeb2adba2365336c768cd6d8c59
   VirgilCryptoFoundation: 79f23a7ab6db642268d31bc63b0cf54db416f089
@@ -71,4 +71,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3
