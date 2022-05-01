@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         host = Uri.parse('http://10.0.2.2:8080/jwt');
       }
       var response =
-      await http.post(host, body: '{"identity": "${initIdentity}"}');
+        await http.post(host, body: '{"identity": "${initIdentity}"}');
       final resp = jsonDecode(response.body);
 
       return resp["jwt"];
@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
       result = "My identity: $initIdentity, Data: $decryptedData";
     } on PlatformException catch (e) {
       result =
-      "Failed to get identity level: '${e.message}' '${e.code}' '${e.details}'.";
+        "Failed to get identity level: '${e.message}' '${e.code}' '${e.details}'.";
     }
 
     setResult(result);
