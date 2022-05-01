@@ -39,9 +39,51 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _identity = 'Unknown';
+  String _state = 'Unknown';
 
-  Future<void> ethree() async {
+  Future<void> multi_device() async {
+    //User identity should remain the same across different devices
+    //To verify multi device properly, you need to launch this code on multiple
+    //devices.
+    final String initIdentity = "multi_device_support";
+
+    final tokenCallback = () async {
+      var host = Uri.parse('http://localhost:8080/jwt');
+      if (Platform.isAndroid) {
+        host = Uri.parse('http://10.0.2.2:8080/jwt');
+      }
+      var response =
+          await http.post(host, body: '{"identity": "$initIdentity"}');
+      final resp = jsonDecode(response.body);
+
+      return resp["virgilToken"];
+    };
+
+    String result;
+    final String password = "12345";
+    final ethree = await Ethree.init(initIdentity, tokenCallback);
+
+    try {
+      result = "Key is taken from local storage";
+      var hasKeyLocally = await ethree.hasLocalPrivateKey();
+      if (!hasKeyLocally) {
+        print("Trying to restore private key");
+        await ethree.restorePrivateKey(password);
+        result = "Key is restored from cloud";
+      }
+    } on PlatformException catch (e) {
+      print("Failed to get identity: '${e.message}' '${e.code}' '${e.details}'.");
+      print("Register user: $initIdentity");
+      await ethree.register();
+
+      print("Backup private key");
+      await ethree.backupPrivateKey(password);
+      result = "User was registered and private key backuped";
+    }
+    setResult(result);
+  }
+
+  Future<void> random_user() async {
     final String initIdentity = getRandString(10);
 
     final tokenCallback = () async {
@@ -50,13 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
         host = Uri.parse('http://10.0.2.2:8080/jwt');
       }
       var response =
-          await http.post(host, body: '{"identity": "${initIdentity}"}');
+        await http.post(host, body: '{"identity": "${initIdentity}"}');
       final resp = jsonDecode(response.body);
 
       return resp["jwt"];
     };
 
-    String identity;
+    String result;
     try {
       final ethree = await Ethree.init(initIdentity, tokenCallback);
       await ethree.register();
@@ -70,17 +112,24 @@ class _MyHomePageState extends State<MyHomePage> {
       await ethree.rotatePrivateKey();
       await ethree.backupPrivateKey("1111");
 
+      //These users should exist in the cloud, so you can register them manually
+      //if you need whole example to work
       final users = await ethree
           .findUsers(["identity1", "identity2", initIdentity], true);
       final data = await ethree.authEncrypt(users, "data");
-      await ethree.authDecrypt(data, users[initIdentity]);
+      final decryptedData = await ethree.authDecrypt(data, users[initIdentity]);
+      result = "My identity: $initIdentity, Data: $decryptedData";
     } on PlatformException catch (e) {
-      identity =
-          "Failed to get identity level: '${e.message}' '${e.code}' '${e.details}'.";
+      result =
+        "Failed to get identity level: '${e.message}' '${e.code}' '${e.details}'.";
     }
 
+    setResult(result);
+  }
+
+  setResult(final String state) {
     setState(() {
-      _identity = identity;
+      _state = state;
     });
   }
 
@@ -91,11 +140,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Text("Each button starts fully separate examples of ethree usage"),
             ElevatedButton(
-              child: Text('Get Battery Level'),
-              onPressed: ethree,
+              child: Text('Gen random user'),
+              onPressed: random_user,
             ),
-            Text(_identity),
+            ElevatedButton(
+              child: Text('Try multi device'),
+              onPressed: multi_device,
+            ),
+            Text("Result: $_state"),
           ],
         ),
       ),
