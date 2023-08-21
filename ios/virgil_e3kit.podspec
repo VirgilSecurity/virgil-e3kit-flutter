@@ -11,7 +11,7 @@ Virgil virgil_e3kit.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'VirgilE3Kit', '~> 3.0.1'
+  s.dependency 'VirgilE3Kit', '~> 4.0.1'
   s.platform = :ios, '8.0'
   
   # Flutter.framework does not contain a i386 slice.
